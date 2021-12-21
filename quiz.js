@@ -7,13 +7,21 @@ const data = require('./datastorage.js')
 // import terminalLink from 'terminal-link'
 // const myTwitter = terminalLink('Twitter', 'https://twitter.com/eatplaynap329')
 
-// 非同期が難しいので一旦保留
+const levels = [ { name: '5級', amount: '5' },
+    { name: '4級', amount: '10' },
+    { name: '3級', amount: '15' },
+    { name: '2級', amount: '20' },
+    { name: '1級', amount: '30' }]
+
 const selectLevel = async () => {
     const {Select} = require('enquirer')
     const prompt = new Select({
-        name: 'name',
-        message: '何問受ける？',
-        choices: [ '5', '10', '15', '20', '30' ]
+        name: 'level',
+        message: '何級に挑戦する？',
+        choices: levels,
+        result() {
+            return this.focused.amount
+        }
     })
     try {
         const answer = await prompt.run()
