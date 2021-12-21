@@ -37,7 +37,7 @@ const quizes = [
     {
         name: 'eatplaynap',
         message: '学生時代のeatplaynapがテストで取った最低点数は次のうちどれ？',
-        choices: [0, 6, 11, 28],
+        choices: ['0', '6', '11', '28'],
         correctChoice: 1,
         comment: '中1のとき音楽で、高2のとき物理でそれぞれ6点を取りました。'
     },
@@ -72,7 +72,7 @@ const quizes = [
     {
         name: 'eatplaynap',
         message: 'eatplaynapの身長は何cm？',
-        choices: [155, 160, 165, 170],
+        choices: ['155', '160', '165', '170'],
         correctChoice: 1,
         comment: '小6で身長が止まってからずっと伸びていません…。'
     },
@@ -86,7 +86,7 @@ const quizes = [
     {
         name: 'eatplaynap',
         message: 'eatplaynapの生まれた年は？',
-        choices: [1990, 1991, 1992, 1993],
+        choices: ['1990', '1991', '1992', '1993'],
         correctChoice: 3,
         comment: 'Rubyと同い年です。'
     },
@@ -215,6 +215,13 @@ const quizes = [
         choices: ['ワイン', 'ビール', 'キーボード', 'Tシャツ'],
         correctChoice: 0,
         comment: '食品を輸入するときは必要書類がたくさんあって大変でした。'
+    },
+    {
+        name: 'eatplaynap',
+        message: 'eatplaynapは漢字検定何級を持っているでしょうか？',
+        choices: ['1級', '3級', '5級', '8級' ],
+        correctChoice: 3,
+        comment: '小学3年生のとき猛勉強して取りました。えらい。'
     }
 ]
 
