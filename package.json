@@ -11,12 +11,18 @@
     "url": "git+https://github.com/eatplaynap/eatplaynap-quiz.git"
   },
   "keywords": [
-    "eatplaynap", "quiz", "self-introduce"
+    "eatplaynap",
+    "quiz",
+    "self-introduce"
   ],
   "author": "eatplaynap",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/eatplaynap/eatplaynap-quiz/issues"
   },
-  "homepage": "https://github.com/eatplaynap/eatplaynap-quiz#readme"
+  "homepage": "https://github.com/eatplaynap/eatplaynap-quiz#readme",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "enquirer": "^2.3.6"
+  }
 }
