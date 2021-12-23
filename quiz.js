@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { Select } = require('enquirer')
+const { Quiz } = require('enquirer')
 const data = require('./datastorage.js')
 // importとrequireを併用する方法が分からないので一旦保留
 // const terminalLink = require('terminal-link')
@@ -15,6 +16,10 @@ const levels = [{name: '5級', amount: '5'},
 let score = 0
 
 class MyQuiz {
+    constructor(score) {
+        this.score_ = score
+    }
+
     async start() {
         const prompt = new Select({
             name: 'level',
@@ -28,15 +33,15 @@ class MyQuiz {
             const answer = await prompt.run()
             const number = parseInt(answer)
             const shitsumon = this.rightAmountOfQuizes(number)
-            this.execute(shitsumon, score)
+            await this.execute(shitsumon)
         } catch {
-            console.log('Error')
+            console.log('Error here')
         }
     }
 
     async createQuiz(quizInfo){
         try {
-            const prompt = new Select(quizInfo)
+            const prompt = new Quiz(quizInfo)
             const answer = await prompt.run()
             if (answer.correct) {
                 console.log('よっ！正解！')
@@ -70,14 +75,13 @@ class MyQuiz {
     }
 
 // さっき作ったクイズの配列のcreateQuizを実行する
-    async execute(quizes, hoge){
+    async execute(quizes){
         for (let j = 0; j < quizes.length; j++) {
             await this.createQuiz(quizes[j])
-            hoge += hoge
         }
         await console.log(`You won ${hoge}!`)
     }
 }
 
-const quiz = new MyQuiz
+const quiz = new MyQuiz(0)
 quiz.start()
