@@ -1,4 +1,4 @@
-const quizes = [
+const quizzes = [
     {
         name: 'eatplaynap',
         message: 'eatplaynapの好きなグルメ漫画は次のうちどれ？',
@@ -225,4 +225,4 @@ const quizes = [
     }
 ]
 
-module.exports = quizes
+module.exports = quizzes

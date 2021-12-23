@@ -3,17 +3,13 @@
 const { Select } = require('enquirer')
 const { Quiz } = require('enquirer')
 const data = require('./datastorage.js')
-// importとrequireを併用する方法が分からないので一旦保留
-// const terminalLink = require('terminal-link')
-// import terminalLink from 'terminal-link'
-// const myTwitter = terminalLink('Twitter', 'https://twitter.com/eatplaynap329')
+const chalk = require('chalk')
 
 const levels = [{name: '5級', amount: '5'},
     {name: '4級', amount: '10'},
     {name: '3級', amount: '15'},
     {name: '2級', amount: '20'},
     {name: '1級', amount: '30'}]
-let score = 0
 
 class MyQuiz {
     constructor(score) {
@@ -21,6 +17,7 @@ class MyQuiz {
     }
 
     async start() {
+        console.log('これからクイズを始めます')
         const prompt = new Select({
             name: 'level',
             message: '何級に挑戦する？',
@@ -29,30 +26,25 @@ class MyQuiz {
                 return this.focused.amount
             }
         })
-        try {
-            const answer = await prompt.run()
-            const number = parseInt(answer)
-            const shitsumon = this.rightAmountOfQuizes(number)
-            await this.execute(shitsumon)
-        } catch {
-            console.log('Error here')
-        }
+        const answer = await prompt.run()
+        const number = parseInt(answer)
+        let remainingQuizAmount = number
+        const quizzes = this.rightAmountOfQuizzes(number)
+        await this.ask(quizzes)
+        await this.calcScore(quizzes)
     }
 
-    async createQuiz(quizInfo){
-        try {
-            const prompt = new Quiz(quizInfo)
-            const answer = await prompt.run()
-            if (answer.correct) {
-                console.log('よっ！正解！')
-                score += 10
-            } else {
-                console.log(`残念! 正しくは...${answer.correctAnswer}です！`)
-            }
-            console.log(`eatplaynapから一言: ${prompt.comment}\n`)
-        } catch {
-            console.log('Error')
+    async startQuiz(quizInfo, hoge){
+        console.log(`あと${hoge}問です`)
+        const prompt = new Quiz(quizInfo)
+        const answer = await prompt.run()
+        if (answer.correct) {
+            console.log(chalk.bold.green('よっ！正解！'))
+            this.score_ += 1
+        } else {
+            console.log(chalk.bold.red(`残念! 正しくは...${answer.correctAnswer}です！`))
         }
+        console.log(chalk.bold.blue(`\neatplaynapから一言: ${prompt.comment}\n`))
     }
 
 // 単にシャッフルする機能
@@ -65,7 +57,7 @@ class MyQuiz {
     }
 
 // プロンプトで選択した級数に応じた数のクイズを配列に入れる
-    rightAmountOfQuizes(quizesAmount){
+    rightAmountOfQuizzes(quizesAmount){
         const shuffledArray = this.shuffle(data)
         const quizes = []
         for (let i = 0; i < quizesAmount; i++) {
@@ -74,12 +66,23 @@ class MyQuiz {
         return quizes
     }
 
-// さっき作ったクイズの配列のcreateQuizを実行する
-    async execute(quizes){
-        for (let j = 0; j < quizes.length; j++) {
-            await this.createQuiz(quizes[j])
+// さっき作ったクイズを実行する
+    async ask(quizzes){
+        let mondaisu = quizzes.length
+        for (let j = 0; j < mondaisu; j++) {
+            await this.startQuiz(quizzes[j], mondaisu-j)
         }
-        await console.log(`You won ${hoge}!`)
+    }
+
+    calcScore(quizzes) {
+        const correctAnswerRate = this.score_ / quizzes.length
+        if (correctAnswerRate >= 0.7) {
+            console.log(correctAnswerRate)
+            console.log('合格しました')
+        } else {
+            console.log(correctAnswerRate)
+            console.log('不合格！もっとがんばれ')
+        }
     }
 }
 
