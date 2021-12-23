@@ -1,0 +1,22 @@
+{
+  "name": "eatplaynap-quiz",
+  "version": "1.0.0",
+  "description": "self-introduction quiz game npm",
+  "main": "./quiz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eatplaynap/eatplaynap-quiz.git"
+  },
+  "keywords": [
+    "eatplaynap", "quiz", "self-introduce"
+  ],
+  "author": "eatplaynap",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eatplaynap/eatplaynap-quiz/issues"
+  },
+  "homepage": "https://github.com/eatplaynap/eatplaynap-quiz#readme"
+}
