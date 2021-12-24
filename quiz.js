@@ -76,9 +76,9 @@ class MyQuiz {
   calcScore (quizzes) {
     const correctAnswerRate = this.score_ / quizzes.length
     if (correctAnswerRate >= 0.7) {
-      console.log('合格です！')
+      console.log('eatplaynap検定合格です！Twitterでeatplaynapに合格を報告したらいいことがあるかも！\nTwitter: @eatplaynap329')
     } else {
-      console.log('不合格です！eatplaynap')
+      console.log('eatplaynap検定不合格です！eatplaynapのTwitterをフォローして勉強しましょう！\nTwitter: @eatplaynap329')
     }
   }
 }
