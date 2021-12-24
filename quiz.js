@@ -17,7 +17,7 @@ class MyQuiz {
     }
 
     async start() {
-        console.log('これからクイズを始めます')
+        console.log('eatplaynap検定を始めます')
         const prompt = new Select({
             name: 'level',
             message: '何級に挑戦する？',
@@ -28,14 +28,13 @@ class MyQuiz {
         })
         const answer = await prompt.run()
         const number = parseInt(answer)
-        let remainingQuizAmount = number
         const quizzes = this.rightAmountOfQuizzes(number)
         await this.ask(quizzes)
         await this.calcScore(quizzes)
     }
 
-    async startQuiz(quizInfo, hoge){
-        console.log(`あと${hoge}問です`)
+    async startQuiz(quizInfo, remainingAmountOfQuiz){
+        console.log(`あと${remainingAmountOfQuiz}問です`)
         const prompt = new Quiz(quizInfo)
         const answer = await prompt.run()
         if (answer.correct) {
@@ -68,20 +67,18 @@ class MyQuiz {
 
 // さっき作ったクイズを実行する
     async ask(quizzes){
-        let mondaisu = quizzes.length
-        for (let j = 0; j < mondaisu; j++) {
-            await this.startQuiz(quizzes[j], mondaisu-j)
+        let quizzesAmount = quizzes.length
+        for (let j = 0; j < quizzesAmount; j++) {
+            await this.startQuiz(quizzes[j], quizzesAmount-j)
         }
     }
 
     calcScore(quizzes) {
         const correctAnswerRate = this.score_ / quizzes.length
         if (correctAnswerRate >= 0.7) {
-            console.log(correctAnswerRate)
-            console.log('合格しました')
+            console.log('合格です！')
         } else {
-            console.log(correctAnswerRate)
-            console.log('不合格！もっとがんばれ')
+            console.log('不合格です！eatplaynap')
         }
     }
 }
