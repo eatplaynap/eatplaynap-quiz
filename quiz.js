@@ -3,7 +3,6 @@
 const { Select } = require('enquirer')
 const { Quiz } = require('enquirer')
 const data = require('./datastorage.js')
-const chalk = require('chalk')
 
 const levels = [{ name: '5級', amount: '5' },
   { name: '4級', amount: '10' },
@@ -38,12 +37,12 @@ class MyQuiz {
     const prompt = new Quiz(quizInfo)
     const answer = await prompt.run()
     if (answer.correct) {
-      console.log(chalk.bold.green('よっ！正解！'))
+      console.log('よっ！正解！')
       this.score_ += 1
     } else {
-      console.log(chalk.bold.red(`残念! 正しくは...${answer.correctAnswer}です！`))
+      console.log(`残念! 正しくは...${answer.correctAnswer}です！`)
     }
-    console.log(chalk.bold.blue(`\neatplaynapから一言: ${prompt.comment}\n`))
+    console.log(`\neatplaynapから一言: ${prompt.comment}\n`)
   }
 
   // 単にシャッフルする機能
