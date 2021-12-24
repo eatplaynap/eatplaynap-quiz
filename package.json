@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "self-introduction quiz game npm",
   "main": "./quiz.js",
+  "bin": {
+    "eatplaynap-quiz": "./quiz.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
