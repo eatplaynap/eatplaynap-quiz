@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/eatplaynap/eatplaynap-quiz#readme",
   "dependencies": {
-    "chalk": "^5.0.0",
     "enquirer": "^2.3.6"
   },
   "devDependencies": {
