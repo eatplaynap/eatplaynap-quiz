@@ -1,6 +1,6 @@
 {
   "name": "eatplaynap-quiz",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "self-introduction quiz game npm",
   "main": "./quiz.js",
   "bin": {
