@@ -4,7 +4,7 @@ Huh, seems you don't know me but it's perfectly fine.
 Because here I made a self introduction quiz about me!
 All you need to do is just install this npm and answer fun quizzes and voila, you know every details about me as if I was your best friend. 
 
-![result](https://user-images.githubusercontent.com/63531341/147401143-e986e28a-8e9e-4436-b709-e54f7d50a578.gif)
+![392009a17de3de599346847e134fc83f](https://user-images.githubusercontent.com/63531341/147401543-c7899e5f-33d5-4e38-a3e9-008ca5b2b195.gif)
 
 There are 5 levels of quizzes.
 Each levels are defined not by difficulty but by the amount of quizzes.
