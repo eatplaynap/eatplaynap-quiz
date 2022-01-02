@@ -27,7 +27,7 @@ class MyQuiz {
     })
     const answer = await prompt.run()
     const number = parseInt(answer)
-    const quizzes = this.rightAmountOfQuizzes(number)
+    const quizzes = this.collectRightAmountOfQuizzes(number)
     await this.ask(quizzes)
     await this.calcScore(quizzes)
   }
@@ -55,7 +55,7 @@ class MyQuiz {
   }
 
   // プロンプトで選択した級数に応じた数のクイズを配列に入れる
-  rightAmountOfQuizzes (quizesAmount) {
+  collectRightAmountOfQuizzes (quizesAmount) {
     const shuffledArray = this.shuffle(data)
     const quizes = []
     for (let i = 0; i < quizesAmount; i++) {
