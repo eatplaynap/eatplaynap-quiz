@@ -12,7 +12,7 @@ const levels = [{ name: '5級', amount: '5' },
 
 class MyQuiz {
   constructor (score) {
-    this.score_ = score
+    this.score = score
   }
 
   async start () {
@@ -38,7 +38,7 @@ class MyQuiz {
     const answer = await prompt.run()
     if (answer.correct) {
       console.log('よっ！正解！')
-      this.score_ += 1
+      this.score += 1
     } else {
       console.log(`残念! 正しくは...${answer.correctAnswer}です！`)
     }
@@ -73,7 +73,7 @@ class MyQuiz {
   }
 
   calcScore (quizzes) {
-    const correctAnswerRate = this.score_ / quizzes.length
+    const correctAnswerRate = this.score / quizzes.length
     if (correctAnswerRate >= 0.7) {
       console.log('eatplaynap検定合格です！Twitterでeatplaynapに合格を報告したらいいことがあるかも！\nTwitter: @eatplaynap329')
     } else {
