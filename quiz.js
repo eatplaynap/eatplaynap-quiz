@@ -46,12 +46,13 @@ class MyQuiz {
   }
 
   // 単にシャッフルする機能
-  shuffle ([...array]) {
-    for (let i = array.length - 1; i >= 0; i--) {
+  shuffle (array) {
+    const newArray = [...array]
+    for (let i = newArray.length - 1; i >= 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
     }
-    return array
+    return newArray
   }
 
   // プロンプトで選択した級数に応じた数のクイズを配列に入れる
