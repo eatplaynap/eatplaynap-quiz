@@ -75,10 +75,12 @@ class MyQuiz {
 
   calcScore (quizzes) {
     const correctAnswerRate = this.score / quizzes.length
+    const chosenLevel = levels.find(level => level.amount === String(quizzes.length))
+    const chosenLevelName = chosenLevel.name
     if (correctAnswerRate >= 0.7) {
-      console.log('eatplaynap検定合格です！Twitterでeatplaynapに合格を報告したらいいことがあるかも！\nTwitter: @eatplaynap329')
+      console.log(`eatplaynap検定${chosenLevelName}合格です！Twitterでeatplaynapに合格を報告したらいいことがあるかも！\nTwitter: @eatplaynap329`)
     } else {
-      console.log('eatplaynap検定不合格です！eatplaynapのTwitterをフォローして勉強しましょう！\nTwitter: @eatplaynap329')
+      console.log(`eatplaynap検定${chosenLevelName}不合格です！eatplaynapのTwitterをフォローして勉強しましょう！\nTwitter: @eatplaynap329`)
     }
   }
 }
