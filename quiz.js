@@ -12,7 +12,7 @@ const levels = [{ name: '5級', amount: '5' },
 
 class MyQuiz {
   constructor (score) {
-    this.score_ = score
+    this.score = score
   }
 
   async start () {
@@ -27,7 +27,7 @@ class MyQuiz {
     })
     const answer = await prompt.run()
     const number = parseInt(answer)
-    const quizzes = this.rightAmountOfQuizzes(number)
+    const quizzes = this.collectRightAmountOfQuizzes(number)
     await this.ask(quizzes)
     await this.calcScore(quizzes)
   }
@@ -38,7 +38,7 @@ class MyQuiz {
     const answer = await prompt.run()
     if (answer.correct) {
       console.log('よっ！正解！')
-      this.score_ += 1
+      this.score += 1
     } else {
       console.log(`残念! 正しくは...${answer.correctAnswer}です！`)
     }
@@ -46,16 +46,17 @@ class MyQuiz {
   }
 
   // 単にシャッフルする機能
-  shuffle ([...array]) {
-    for (let i = array.length - 1; i >= 0; i--) {
+  shuffle (array) {
+    const newArray = [...array]
+    for (let i = newArray.length - 1; i >= 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
     }
-    return array
+    return newArray
   }
 
   // プロンプトで選択した級数に応じた数のクイズを配列に入れる
-  rightAmountOfQuizzes (quizesAmount) {
+  collectRightAmountOfQuizzes (quizesAmount) {
     const shuffledArray = this.shuffle(data)
     const quizes = []
     for (let i = 0; i < quizesAmount; i++) {
@@ -73,11 +74,13 @@ class MyQuiz {
   }
 
   calcScore (quizzes) {
-    const correctAnswerRate = this.score_ / quizzes.length
+    const correctAnswerRate = this.score / quizzes.length
+    const chosenLevel = levels.find(level => level.amount === String(quizzes.length))
+    const chosenLevelName = chosenLevel.name
     if (correctAnswerRate >= 0.7) {
-      console.log('eatplaynap検定合格です！Twitterでeatplaynapに合格を報告したらいいことがあるかも！\nTwitter: @eatplaynap329')
+      console.log(`eatplaynap検定${chosenLevelName}合格です！Twitterでeatplaynapに合格を報告したらいいことがあるかも！\nTwitter: @eatplaynap329`)
     } else {
-      console.log('eatplaynap検定不合格です！eatplaynapのTwitterをフォローして勉強しましょう！\nTwitter: @eatplaynap329')
+      console.log(`eatplaynap検定${chosenLevelName}不合格です！eatplaynapのTwitterをフォローして勉強しましょう！\nTwitter: @eatplaynap329`)
     }
   }
 }
